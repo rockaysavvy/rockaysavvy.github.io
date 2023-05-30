@@ -1,0 +1,256 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>The Hidden Vault (first bank, Vertigo) — Rockay Savvy</title>
+<link rel=stylesheet href="/beta/a.css">
+<link rel=stylesheet href=https://use.typekit.net/qfe8qgh.css>
+<body>
+<img class=backdrop src="/beta/a/backdrops/vertigo3.webp">
+<nav class=top>
+  <ul>
+  <li><a class="tab logo" href="/beta/" data-t="News">News</a>
+  <li><a class="tab active" href="/beta/goals/" data-t="Goals">Goals</a>
+  <li><a class="tab" href="/beta/characters/" data-t="Team">Team</a>
+  <li><a class="tab" href="/beta/weapons/" data-t="Loadout">Loadout</a>
+  <li><a class="tab" href="/beta/strategy/" data-t="Strategy">Strategy</a>
+  <li><a class="tab" href="/beta/meta/" data-t="About">About</a>
+  <li class=search><input type=search placeholder="Search…">
+  </ul>
+</nav>
+<article class=prose>
+<h1>The Hidden Vault (first bank, Vertigo)</h1>
+
+<figure class="hero">
+  <img src="/beta/i/T_GUI_Goal_thv_TheHiddenVault.webp">
+  <img class=icon src="/beta/i/T_GUI_MapIcon_story_HiddenVault.webp">
+  <figcaption class=caption>
+    Break into the Vertigo Bank's hidden vault rumored to contain a collection of unique valuables.
+  </figcaption>
+  </figure>
+
+<p class=task>
+  Main objective
+  <span class=mission>Rob the hidden vault</span>
+</p>
+
+<p class=task>
+  Crew
+  <span class=mission>
+    1–4 heisters
+    </span>
+</p>
+
+<a class="task task-disclosing">
+  Special objectives
+  <span class="mission disclosure">
+    4 possibilities
+  </span>
+</a>
+<ul class="task-disclosed bonus-objective-list" hidden>
+  <li class=bonus-objective>Collect 90% of all loot
+  <li class=bonus-objective>Use at most 3 revives
+  <li class=bonus-objective>Use at most 4 revives
+  <li class=bonus-objective>Finish with the boss on the team
+  </ul>
+
+<a class="task task-disclosing">
+  Expected value
+  <span class="mission disclosure" id=reward-calculator-summary>Calculate</span>
+</a>
+
+<section class="task-disclosed reward-calculator" hidden data-rmv=1 data-mmvm=30.0 data-subtype=BigHeist data-omv=40.0>
+  <label>
+    Respect
+    <select id=reward-calculator-respect>
+      <option value="Low Connected Respected Formidable CrimeBoss GodFather">Any
+      <option value=Low>Low respect
+      <option value=Connected>Connected
+      <option value=Respected>Respected
+      <option value=Formidable>Formidable
+      <option value=CrimeBoss>Crime boss
+      <option value=GodFather>Godfather
+    </select>
+  </label>
+  <label>
+    Generated difficulty
+    <select id=reward-calculator-difficulty>
+      <option value="SD_LightForce SD_MediumForce SD_HeavyForce">Any
+      <option value=SD_LightForce>Light
+      <option value=SD_MediumForce>Medium
+      <option value=SD_HeavyForce>Heavy
+    </select>
+  </label>
+  
+  <label>
+    Big-ass Bounty
+    <select id=reward-calculator-bonus>
+      <option value=0.0>None
+      <option value=0.04>Level 1: 4%
+      <option value=0.08>Level 2: 8%
+      <option value=0.12>Level 3: 12%
+      <option value=0.16>Level 4: 16%
+      <option value=0.2>Level 5: 20%
+      <option value=0.24>Level 6: 24%
+      <option value=0.28>Level 7: 28%
+      <option value=0.32>Level 8: 32%
+      <option value=0.36000000000000004>Level 9: 36%
+      <option value=0.4>Level 10: 40%
+      </select>
+  </label>
+  <p class=task>
+    Expected value
+    <span class=mission id=reward-calculator-objective></span>
+  </p>
+  <p class=task>
+    Maximum reward
+    <span class=mission id=reward-calculator-max></span>
+  </p>
+  <p class=task>
+    Mission planning cost
+    <span class=mission id=reward-calculator-expenses></span>
+  </p>
+</section>
+<p class=task>
+  Stealth
+  <span class=mission>
+    Available
+  </span>
+</p>
+<p><dfn class="self">The Hidden Vault</dfn> is the final mission in <a href="/beta/flows/FTD_FindTheDisc/#goal-THV_OneBank">Piggy Bank</a> and the principal mission of <a href="/beta/flows/FTD_FindTheDisc/">The Disk</a>. <a href="/beta/characters/Baker/" class="stub">Baker</a> sends his <a href="/beta/people/crew/" class="stub">crew</a> to rob the vault hidden in <a href="/beta/culture/Vertigo-Bank/" class="stub">Vertigo Bank</a>, using the access code from <a href="/beta/culture/the-disc/" class="stub">the disk</a> to gain entry to the vault room.</p>
+
+<h2 id="strategy">Strategy</h2>
+<h2 class="objective">Enter the bank</h2>
+<h2 class="objective">Find the board with the shift names</h2>
+<p>The night manager’s name will be one of the following:</p>
+
+<ul>
+  <li>Andres Goff</li>
+  <li>Max Wells</li>
+  <li>Ben Day</li>
+  <li>Joe Wood</li>
+  <li>Malaki Griffin</li>
+  <li>Kassandra Santos</li>
+  <li>Lexi Davidson</li>
+  <li>Victoria Perry</li>
+  <li>Zoe Cole</li>
+  <li>Taliyah Tillman</li>
+  <li>Chris Wheeler</li>
+</ul>
+
+<p>Any computer with any of these nameplates is the correct one, so players <strong>don’t need to find the board</strong>. Nevertheless, the board can spawn:</p>
+
+<ul class="fig-list">
+  <li>TODO</li>
+</ul>
+
+<h2 class="objective">Find the night manager's computer</h2>
+<p>The computer is in one of the three offices on the ground floor. Players can search for the <a href="#access-card">access card</a> simultaneously to save time.</p>
+
+<p>Inserting the disk into the wrong computer will render the vault <strong>permanently inaccessible</strong> and trigger the escape sequence. Incorrect computers will spawn with one of the following names:</p>
+
+<details>
+  <summary>
+List of incorrect names
+</summary>
+
+  <ul>
+    <li>Jake Shaw</li>
+    <li>Chad Finley</li>
+    <li>Troy Fisher</li>
+    <li>Alonso Mckay</li>
+    <li>Ella Gibson</li>
+    <li>Lacey Elliott</li>
+    <li>Lana Dunn</li>
+    <li>Lydia Dixon</li>
+    <li>Joe Jordan</li>
+    <li>Peter Gray</li>
+    <li>John Lloyd</li>
+    <li>Tom Hunter</li>
+    <li>Ellie Wood</li>
+    <li>Kate Lee</li>
+    <li>Lexi Palmer</li>
+    <li>Kassidy Francis</li>
+    <li>Kayla Davis</li>
+    <li>Asher Stevenson</li>
+    <li>Harrison Kelly</li>
+    <li>Ben Wood</li>
+    <li>Harry Clark</li>
+    <li>Blake Atkinson</li>
+    <li>Rebecca Webb</li>
+    <li>Judith Mcgee</li>
+    <li>Sarah Baker</li>
+    <li>Sofia Stewart</li>
+    <li>Demi Thomson</li>
+    <li>Jennifer Griffith</li>
+    <li>Dominic Lloyd</li>
+    <li>Declan Murray</li>
+    <li>Fisher Gordon</li>
+    <li>William Porter</li>
+    <li>Marcus Barry</li>
+    <li>Elias Walker</li>
+    <li>Naomi Bates</li>
+    <li>Evelyn Newman</li>
+    <li>Marissa Long</li>
+    <li>Abby Burton</li>
+    <li>Mya Clarke</li>
+    <li>Martha Thomas</li>
+    <li>Lucy Branch</li>
+    <li>Kayla James</li>
+    <li>Joshua Shaw</li>
+    <li>Jorge Christian</li>
+    <li>Donovan O’neal</li>
+    <li>Sam Jones</li>
+    <li>Kobe Mckay</li>
+    <li>Oscar Palmer</li>
+    <li>Tilly Pearson</li>
+    <li>Martha White</li>
+    <li>Judith Schwartz</li>
+    <li>Rebecca Ross</li>
+    <li>Millie Jenkins</li>
+  </ul>
+</details>
+
+<h2 class="objective">Proceed to the hidden vault</h2>
+<p>The vault is in one of three locations:</p>
+
+<ul class="fig-list">
+  <li>
+    <figure class="fig"><img src="/beta" /><figcaption class="caption">Behind the bookcase on the far wall upstairs;</figcaption></figure>
+  </li>
+  <li>
+    <figure class="fig"><img src="/beta" /><figcaption class="caption">Behind the bookcase beside the staircase; or</figcaption></figure>
+  </li>
+  <li>
+    <figure class="fig"><img src="/beta" /><figcaption class="caption">Beneath the lobby, at the foot of a hidden staircase.</figcaption></figure>
+  </li>
+</ul>
+
+<h2 class="objective">Break open the vault</h2>
+
+<h2 class="objective">Steal the loot</h2>
+
+<figure class="fig"><img src="/beta/a/thv-small-tellers.webp" /><figcaption class="caption">If the player wants to acquire all of the loot, there is also a small stash of cash in the teller area.</figcaption></figure>
+
+<h2 class="objective">Get to the elevator</h2>
+<h2 class="objective" id="access-card">Search the offices for the access card</h2>
+
+<p>Heisters can find the access card:</p>
+
+<ul class="fig-list">
+  <li>
+    <figure class="fig"><img src="/beta/a/thv-accesscard-desk.webp" /><figcaption class="caption">On top of a desk in the lower offices</figcaption></figure>
+  </li>
+</ul>
+
+<h2 class="objective">Call the elevator</h2>
+<h2 class="objective">Move the loot into the Elevator</h2>
+<h2 class="objective">Go to the roof</h2>
+<h2 class="objective">Set up the zipline</h2>
+<h2 class="objective">Hook the bags to the Zipline</h2>
+<h2 class="objective">Time to escape</h2>
+
+
+</article>
+
+<script src=/beta/a/d.js></script>
+<script src=/beta/a.js></script>
+

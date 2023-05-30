@@ -1,0 +1,133 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>Motel Meeting — Rockay Savvy</title>
+<link rel=stylesheet href="/beta/a.css">
+<link rel=stylesheet href=https://use.typekit.net/qfe8qgh.css>
+<body>
+<img class=backdrop src="/beta/a/backdrops/discmeetmotel1.webp">
+<nav class=top>
+  <ul>
+  <li><a class="tab logo" href="/beta/" data-t="News">News</a>
+  <li><a class="tab active" href="/beta/goals/" data-t="Goals">Goals</a>
+  <li><a class="tab" href="/beta/characters/" data-t="Team">Team</a>
+  <li><a class="tab" href="/beta/weapons/" data-t="Loadout">Loadout</a>
+  <li><a class="tab" href="/beta/strategy/" data-t="Strategy">Strategy</a>
+  <li><a class="tab" href="/beta/meta/" data-t="About">About</a>
+  <li class=search><input type=search placeholder="Search…">
+  </ul>
+</nav>
+<article class=prose>
+<h1>Motel Meeting</h1>
+<p class=synopsis>Baker steals the disk from Whitey at a motel.</p>
+<figure class="hero">
+  <img src="/beta/i/T_GUI_Goal_ftd_FindTheDisc.webp">
+  <img class=icon src="/beta/i/T_GUI_MapIcon_story_AttackGangsters.webp">
+  <figcaption class=caption>
+    Retrieve Nasara's briefcase with the disc.
+  </figcaption>
+  </figure>
+
+
+<p class=task>
+  Crew
+  <span class=mission>
+    1–4 heisters
+    </span>
+</p>
+
+
+<a class="task task-disclosing">
+  Expected value
+  <span class="mission disclosure" id=reward-calculator-summary>Calculate</span>
+</a>
+
+<section class="task-disclosed reward-calculator" hidden data-rmv=0.9 data-mmvm=10.0 data-subtype=Story data-omv=85.0>
+  <label>
+    Respect
+    <select id=reward-calculator-respect>
+      <option value="Low Connected Respected Formidable CrimeBoss GodFather">Any
+      <option value=Low>Low respect
+      <option value=Connected>Connected
+      <option value=Respected>Respected
+      <option value=Formidable>Formidable
+      <option value=CrimeBoss>Crime boss
+      <option value=GodFather>Godfather
+    </select>
+  </label>
+  <label>
+    Generated difficulty
+    <select id=reward-calculator-difficulty>
+      <option value="SD_LightForce SD_MediumForce SD_HeavyForce">Any
+      <option value=SD_LightForce>Light
+      <option value=SD_MediumForce>Medium
+      <option value=SD_HeavyForce>Heavy
+    </select>
+  </label>
+  
+  <label>
+    Big-ass Bounty
+    <select id=reward-calculator-bonus>
+      <option value=0.0>None
+      <option value=0.04>Level 1: 4%
+      <option value=0.08>Level 2: 8%
+      <option value=0.12>Level 3: 12%
+      <option value=0.16>Level 4: 16%
+      <option value=0.2>Level 5: 20%
+      <option value=0.24>Level 6: 24%
+      <option value=0.28>Level 7: 28%
+      <option value=0.32>Level 8: 32%
+      <option value=0.36000000000000004>Level 9: 36%
+      <option value=0.4>Level 10: 40%
+      </select>
+  </label>
+  <p class=task>
+    Expected value
+    <span class=mission id=reward-calculator-objective></span>
+  </p>
+  <p class=task>
+    Maximum reward
+    <span class=mission id=reward-calculator-max></span>
+  </p>
+  <p class=task>
+    Mission planning cost
+    <span class=mission id=reward-calculator-expenses></span>
+  </p>
+</section>
+<p class=task>
+  Stealth
+  <span class=mission>
+    Available
+  </span>
+</p>
+<p><dfn class="self">Motel Meeting</dfn> is the first mission in <a href="/beta/flows/FTD_FindTheDisc/#goal-FTD_FindDisc">The Disk</a>; <a href="/beta/characters/Baker/" class="stub">Baker</a> will randomly encounter either it or <a href="/beta/missions/ftd_DiscMeetConstruction/">Construction Meeting</a>. After <a href="/beta/characters/Secretary/" class="stub">Casey</a> discovers the identity of <a href="/beta/culture/the-disc/" class="stub">the disk</a>’s seller and the location of the exchange—a nearby motel—Baker sends his <a href="/beta/people/crew/" class="stub">crew</a> to intervene.</p>
+
+<h2 id="strategy">Strategy</h2>
+<h2 class="objective">Interrupt the deal</h2>
+<p><a href="/beta/people/Whitey/" class="stub">Whitey</a> begins the mission standing on the second floor balcony. It’s easiest to eliminate him <strong>before he enters the motel room</strong>, since there are several more <a href="/beta/people/gangsters/" class="stub">gangsters</a> inside.</p>
+
+<dl class="objective-annotation">
+    <dt>If the alarm is triggered before the deal finishes, Whitey will flee with the briefcase.</dt>
+    <dd>
+        <h2 class="objective">Eliminate Whitey</h2>
+    </dd>
+</dl>
+
+<h2 class="objective">Get the briefcase</h2>
+<p>If Whitey hasn’t completed the trade, he will <strong>drop the briefcase</strong> when he dies. <span class="ifig"><img src="/beta/a/discmeetmotel-cash.webp" /><span class="caption">Players can find the cash in several duffel bags on the bed in the motel room</span></span>, along with <span class="ifig"><img src="/beta/a/discmeetmotel-largedrugs.webp" /><span class="caption">a large stash of drugs by the TV</span></span> and <span class="ifig"><img src="/beta/a/discmeetmotel-smalldrugs.webp" /><span class="caption">another, smaller stash on the desk</span></span>. If the exchange goes through, Whitey will <strong>leave the briefcase in the room</strong> and drop the cash instead upon his death.</p>
+
+<h2 class="objective">Time to escape</h2>
+
+<h2 id="consequences">Consequences</h2>
+<div class="spoilers">
+  <p>If Baker obtains the disk, <a href="/beta/characters/Hand/" class="stub">Nasara</a> transmits its contents to <a href="/beta/characters/Wiz/" class="stub">Wiz</a> in prison, who <a href="/beta/missions/char_Wiz01/">smuggles his response out</a>. No matter what happens in <a href="/beta/flows/char_Wiz/">Wiz’s story</a>, <a href="/beta/characters/Agent/" class="stub">Gloves</a> will eventually decrypt the disk and help Baker plan the <a href="/beta/flows/FTD_FindTheDisc/#goal-THV_OneBank">Hidden Vault heist</a>.</p>
+
+  <p>If the player fails the mission, Baker instead must <a href="/beta/missions/char_Wiz03/">break Wiz out of prison</a>. This is the <strong>only way</strong> to complete Wiz’s story and obtain the achievement <a href="/beta/achievements/char_StoryWiz/" class="stub">Geek Out</a>.</p>
+</div>
+
+
+
+</article>
+
+<script src=/beta/a/d.js></script>
+<script src=/beta/a.js></script>
+
