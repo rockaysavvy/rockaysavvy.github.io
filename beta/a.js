@@ -117,29 +117,36 @@ function showFig(openFig, animated = false) {
   fig.classList.add('active-fig')
 
   if (animated) {
+    const img2 = img.cloneNode()
+    img2.src = img.dataset.src
+    img.after(img2)
+
     const fbb = openFig.querySelector('img').getBoundingClientRect()
     const abb = new DOMRect(0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight)
     fig.style.background = 'transparent'
     fig.style.transition = transition('background')
-    img.style.transform = transform(abb, fbb, true)
-    img.style.transition = transition('transform')
+    img.style.transform = img2.style.transform = transform(abb, fbb, true)
+    img.style.transition = img2.style.transition = transition('transform')
 
     animate(() => {
-      img.style.transform = ''
+      img.style.transform = img2.style.transform = ''
       fig.style.background = ''
     }, () => {
-      img.style.transition = ''
+      img.style.transition = img2.style.transition = ''
       fig.style.transition = ''
     })
+  } else {
+    img.src = img.dataset.src
   }
   const params = new URLSearchParams(location.hash.slice(1))
-  params.set('fig', img.getAttribute('src'))
+  params.set('fig', img.dataset.src)
   history.replaceState(null, '', '#' + params)
   document.body.append(fig)
   document.addEventListener('wheel', noScroll, {passive: false})
 }
 function hideFig(fig, animated = false) {
-  const img = fig.querySelector('img')
+  const img = fig.querySelector('img:last-of-type')
+  img.previousElementSibling?.remove()
 
   if (animated) {
     const abb = img.getBoundingClientRect()
@@ -348,7 +355,7 @@ if (params.get('sort')) {
   sortBy(document.querySelector(`[data-id="${params.get('sort')}"]`), params.get('descending') != null)
 }
 if (params.get('fig')) {
-  const img = document.querySelector(`img[src="${params.get('fig')}"]`)
+  const img = document.querySelector(`img[data-src="${params.get('fig')}"]`)
   const fig = img && img.closest('.fig, .ifig')
   if (img) {
     showFig(fig)
