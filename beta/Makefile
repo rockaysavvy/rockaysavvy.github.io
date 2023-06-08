@@ -11,6 +11,7 @@ OUTPUTS = $(OUTPUT_IMAGES) $(OUTPUT_MEDIUMS) $(OUTPUT_THUMBS)
 CWEBP = cwebp -q 75 -alpha_q 75 -m 6 -mt
 CBACKDROP = cwebp -q 15 -m 6 -mt -noalpha -resize 0 540
 CMEDIUM = cwebp -q 60 -alpha_q 75 -m 6 -resize 0 512
+# CSMALL = cwebp -q 60 -alpha_q 70 -m 6 -resize 0 128
 CTHUMB = cwebp -q 30 -m 6 -resize 0 48
 
 i/%.webp: i/_sources/%.png

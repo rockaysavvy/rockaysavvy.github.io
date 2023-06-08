@@ -1,25 +1,28 @@
 <!doctype html>
 <meta charset=utf-8>
+
 <title>X Marks the Spot — Rockay Savvy</title>
 <link rel=stylesheet href="/beta/a.css">
 <link rel=stylesheet href=https://use.typekit.net/qfe8qgh.css>
 <body>
+<img class=backdrop src="/beta/a/backdrops/finddds4.webp">
 <nav class=top>
   <ul>
-  <li><a class="tab logo" href="/beta/" data-t="News">News</a>
+  <li><a class="tab logo" href="/beta/" data-t="New">New</a>
   <li><a class="tab active" href="/beta/goals/" data-t="Goals">Goals</a>
-  <li><a class="tab" href="/beta/characters/" data-t="Team">Team</a>
-  <li><a class="tab" href="/beta/weapons/" data-t="Loadout">Loadout</a>
+  <li><a class="tab" href="/beta/characters/" data-t="People">People</a>
+  <li><a class="tab" href="/beta/weapons/" data-t="Weapons">Weapons</a>
   <li><a class="tab" href="/beta/strategy/" data-t="Strategy">Strategy</a>
   <li><a class="tab" href="/beta/meta/" data-t="About">About</a>
   <li class=search><input type=search placeholder="Search…">
   </ul>
 </nav>
-<article class=prose>
+<article class="prose">
 <h1>X Marks the Spot</h1>
 
+
 <figure class="hero">
-  <img src="/beta/i/T_GUI_Goal_dds_DragonDogs.webp">
+  <img src="/beta/i/m/T_GUI_Goal_dds_DragonDogs.webp">
   <img class=icon src="/beta/i/T_GUI_MapIcon_story_Stealth.webp">
   <figcaption class=caption>
     The target is now clear – Dragon Dogs, the mythical jade statues, are hidden somewhere in the city. Enlist the help of Silver, the treasure hunter you hired, and see what she can uncover about them.
@@ -35,75 +38,55 @@
   Crew
   <span class=mission>
     
-      <a href="/beta/characters/Silver/" class=stub>Silver</a>
+      <a href="/beta/characters/Silver/" class=stub >Silver</a>
     </span>
 </p>
 
-
-<a class="task task-disclosing">
-  Expected value
-  <span class="mission disclosure" id=reward-calculator-summary>Calculate</span>
-</a>
-
-<section class="task-disclosed reward-calculator" hidden data-rmv=1 data-mmvm=1 data-subtype=Story>
-  <label>
-    Respect
-    <select id=reward-calculator-respect>
-      <option value="Low Connected Respected Formidable CrimeBoss GodFather">Any
-      <option value=Low>Low respect
-      <option value=Connected>Connected
-      <option value=Respected>Respected
-      <option value=Formidable>Formidable
-      <option value=CrimeBoss>Crime boss
-      <option value=GodFather>Godfather
-    </select>
-  </label>
-  <label>
-    Generated difficulty
-    <select id=reward-calculator-difficulty>
-      <option value="SD_LightForce SD_MediumForce SD_HeavyForce">Any
-      <option value=SD_LightForce>Light
-      <option value=SD_MediumForce>Medium
-      <option value=SD_HeavyForce>Heavy
-    </select>
-  </label>
-  
-  <label>
-    Big-ass Bounty
-    <select id=reward-calculator-bonus>
-      <option value=0.0>None
-      <option value=0.04>Level 1: 4%
-      <option value=0.08>Level 2: 8%
-      <option value=0.12>Level 3: 12%
-      <option value=0.16>Level 4: 16%
-      <option value=0.2>Level 5: 20%
-      <option value=0.24>Level 6: 24%
-      <option value=0.28>Level 7: 28%
-      <option value=0.32>Level 8: 32%
-      <option value=0.36000000000000004>Level 9: 36%
-      <option value=0.4>Level 10: 40%
-      </select>
-  </label>
-  <p class=task>
-    Expected value
-    <span class=mission id=reward-calculator-objective></span>
-  </p>
-  <p class=task>
-    Maximum reward
-    <span class=mission id=reward-calculator-max></span>
-  </p>
-  <p class=task>
-    Mission planning cost
-    <span class=mission id=reward-calculator-expenses></span>
-  </p>
-</section>
 <p class=task>
   Stealth
   <span class=mission>
-    Required
+    Available
   </span>
 </p>
+<p><dfn class="self">X Marks the Spot</dfn> is the final mission in <a href="/beta/flows/dds_DragonDogs/#goal-DDS_InvestigateZang">A Rich Guest</a>, part of the <a href="/beta/flows/dds_DragonDogs/">Dragon Dogs</a> <a href="/beta/goals/plotlines/">plot line</a>. After <a href="/beta/characters/Baker/" class="stub">Baker</a> hires <a href="/beta/characters/Silver/" class="stub">Silver</a> to investigate the <a href="/beta/culture/Dragon-Dogs/" class="stub">Dragon Dogs</a>, she sneaks into a freight yard where the Dogs are temporarily being held to discover their final destination.</p>
 
+<h2 id="strategy">Strategy</h2>
+<p>3–4 <a href="/beta/people/security-guards/" class="stub">security guards</a> patrol the yard, and one may patrol inside the offices. Silver begins the mission on the roof of a nearby building. She should <strong>wait before using the zipline</strong> until <a href="/beta/people/security-guards/" class="stub">guards</a> are not watching its terminus.</p>
+
+<h2 class="objective">Get into the shipping office unseen</h2>
+<p><span class="ifig"><img src="/beta/a/t/finddds-pipes.webp" data-src="/beta/a/finddds-pipes.webp" /><span class="caption">Players can <a href="/todo/#/pages/slide/">slide</a> along the pipes, gangways, and stacked containers to avoid the guards patrolling below.</span></span> There are a few civilians in the offices whom Silver can either avoid or <a href="/beta/strategy/intimidation/" class="stub">intimidate</a>.</p>
+
+<h2 class="objective">Take a photo of the shipping manifest</h2>
+
+<h2 class="objective">Locate and open the container</h2>
+<p>The Dragon Dogs are in one of three containers:</p>
+<ul class="fig-list">
+  <li>
+    <figure class="fig"><img src="/beta/a/t/finddds-container-b.webp" data-src="/beta/a/finddds-container-b.webp" /><figcaption class="caption">Container B2 is closest the offices, on the ground beside the parked truck.</figcaption></figure>
+  </li>
+  <li>
+    <figure class="fig"><img src="/beta/a/t/finddds-container-a.webp" data-src="/beta/a/finddds-container-a.webp" /><figcaption class="caption">Container A3 is closer to the zipline, on the other side of the truck.</figcaption></figure>
+  </li>
+  <li>
+    <figure class="fig"><img src="/beta/a/t/finddds-container-c.webp" data-src="/beta/a/finddds-container-c.webp" /><figcaption class="caption">Container C1 is stacked atop container A3 and several others.</figcaption></figure>
+  </li>
+</ul>
+
+<h2 class="objective">Take a photo of the Dragon Dogs</h2>
+<h2 class="objective">Time to escape</h2>
+
+<h2 id="consequences">Consequences</h2>
+<div class="spoilers">
+  <p>If Silver completes the mission successfully, she tells <a href="/beta/characters/Agent/" class="stub">Gloves</a> which vault(s) the Dogs will be kept in at <a href="/beta/culture/Imperial-Bank/" class="stub">Imperial Bank</a>. If she also raises the alarm, the bank’s security measures will be <strong>significantly increased</strong>.</p>
+
+  <p>If the player fails or ignores the mission, Silver will leave the campaign forever, and <a href="/beta/characters/Hand/" class="stub">Nasara</a> will locate the Dogs, after two more days if the mission was ignored. Gloves won’t know which vault(s) the Dogs are in at Imperial Bank, so Baker’s <a href="/beta/people/crew/" class="stub">crew</a> will have to drill arbitrarily until they find them.</p>
+</div>
+
+<h2 id="known-issues">Known issues</h2>
+<ul>
+  <li>If Silver finds and photographs the Dogs before the shipping manifest, Nasara instructs her to escape instead of telling her to enter the offices. After she photographs the manifest, he tells her to find the container even though she already has.</li>
+  <li>Even after Silver raises the alarm, the objective still reads “Get into the shipping office <em>unseen</em>”.</li>
+</ul>
 
 
 </article>

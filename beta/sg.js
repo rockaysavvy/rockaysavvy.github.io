@@ -48,10 +48,10 @@ function prettyTag(t) {
   return pretty(t ? t.TagName : 'None')
 }
 function prettyRef(s) {
-  return pretty(s.ObjectName)
+  return s && pretty(s.ObjectName)
 }
 function prettyAsset(s) {
-  return pretty(s.AssetPathName.split('.').pop())
+  return s && pretty(s.AssetPathName.split('.').pop())
 }
 function percent(f) {
   return Math.round(f * 1000)/10 + '%'
@@ -1023,8 +1023,8 @@ class BP_ForceJobForEvent_C extends BP_Base_C {
 class BP_ForceJobExecution_C extends BP_Base_C {
   init(o) {
     super.init(o)
-    this.job = o.Properties.JobID
-    this.result = o.Properties.ForcedResult
+    this.job = o.Properties?.JobID
+    this.result = o.Properties?.ForcedResult
     this.useUiResult = o.Properties?.UseResultWhichWasChosenOnUI ?? false
   }
   details() {
@@ -1132,6 +1132,16 @@ class BP_ChangeBossLevel_C extends BP_Base_C {
   }
   details() {
     return `by ${this.by}`
+  }
+}
+class BP_ChangePlayersArmyAmount_C extends BP_Base_C {
+  init(o) {
+    super.init(o)
+    this.value = o.Properties?.Value ?? 0
+    this.type = o.Properties?.ExpressionType ?? DEFAULT_ACTION_EXPRESSION_TYPE
+  }
+  details() {
+    return pretty(this.type) + ' ' + this.value
   }
 }
 class BP_ChangeLootByVariable_C extends BP_Base_C {
@@ -1666,8 +1676,8 @@ class BP_JobStartExecutionCallback_C extends BP_Base_C {
 class BP_SpawnJob_C extends BP_Base_C {
   init(o) {
     super.init(o)
-    this.job = o.Properties.Job
-    this.difficulty = o.Properties.DifficultyOverride
+    this.job = o.Properties?.Job
+    this.difficulty = o.Properties?.DifficultyOverride
   }
   details() {
     // TODO
@@ -1699,6 +1709,15 @@ class BP_BaseAmountTask_C extends META_TaskCondition {
 }
 class BP_PlayerNeedsToHaveCash_C extends BP_BaseAmountTask_C {}
 class BP_PlayerNeedsToHaveTurfsAmount_C extends BP_BaseAmountTask_C {}
+class BP_PlayerNeedsToHaveArmyAmount_C extends BP_BaseAmountTask_C {
+  init(o) {
+    super.init(o)
+    this.availableOnly = o.Properties?.AvailableOnly ?? false
+  }
+  needDetails() {
+    return super.needDetails() + (this.availableOnly ? ' available' : ' total')
+  }
+}
 class BP_PlayerNeedsToHaveMoneyForAsset_C extends BP_BaseAmountTask_C {
   init(o) {
     super.init(o)
@@ -2246,6 +2265,7 @@ types = {
   BP_FireHeister_C,
   BP_PlayerNeedsToHaveLootAmount_C,
   BP_LootEventCallback_C,
+  BP_ChangePlayersArmyAmount_C,
   BP_ChangeLootByVariable_C,
   BP_ChangeLootByValue_C,
   BP_HeisterLeavesCrew_C,
@@ -2287,6 +2307,7 @@ types = {
   BP_ChangeTaskProcessValueBy_C,
   BP_RemoveRandomAsset_C,
   BP_PlayerNeedsToHaveTurfsAmount_C,
+  BP_PlayerNeedsToHaveArmyAmount_C,
 }
 
 const GRAPH = deref(DATA.findIndex(i => i.Type === 'META_StoryGraph'))

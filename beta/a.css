@@ -310,8 +310,8 @@ body {
   flex-wrap: wrap;
   flex-direction: row;*/
   display: grid;
-  grid-template-columns: repeat(auto-fit, 10em);
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 10em);
+  justify-content: space-evenly;
   gap: .5rem;
 }
 .character-tile {
@@ -530,7 +530,7 @@ article {
   flex-direction: row;
   justify-content: space-evenly;*/
   display: grid;
-  grid-template-columns: repeat(auto-fit, 38.625em);
+  grid-template-columns: repeat(auto-fill, 38.625em);
   justify-content: space-evenly;
   gap: .5em;
   padding: ;
@@ -670,10 +670,20 @@ article {
 
 .prose {
   margin: 0 auto 4rem;
-  padding: 0 1rem;
-  max-width: var(--prose);
   line-height: 1.5;
   text-align: justify;
+}
+.prose/*,
+.goals > h1*/ {
+  padding: 0 1rem;
+  max-width: var(--prose);
+}
+.prose .prose {
+  padding: 0;
+  margin-bottom: 0;
+}
+.prose-full-width {
+  max-width: none;
 }
 .prose strong {
 /*  color: rgb(var(--quality-legendary-a));*/
@@ -684,7 +694,8 @@ article {
   box-shadow: 0 -2px rgb(var(--fg),13%);
 }
 .prose > h1,
-.prose > h2 {
+.prose > h2,
+.goals > h1 {
   text-transform: uppercase;
   text-align: left;
   font-size: 1.75rem;
@@ -693,12 +704,21 @@ article {
   margin: 3rem 0 1rem;
   text-shadow: var(--chromab), var(--farshadow);
 }
+.title-extra {
+  margin-left: 1rem;
+  font-family: var(--pnc);
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: none;
+  text-shadow: none;
+}
 .prose > h2 {
   font-size: 1.5rem;
 }
 .prose > h1 a:only-child,
 .prose > h2 a:only-child {
   text-decoration: none;
+  display: block;
 }
 .prose > h1 a:only-child:hover,
 .prose > h2 a:only-child:hover {
@@ -718,6 +738,7 @@ article {
   margin-bottom: .5rem;
 }
 .prose a,
+.goals a,
 .fig a,
 .ifig a {
   color: rgb(var(--fg));
@@ -725,15 +746,17 @@ article {
 /*  text-decoration: none;*/
 }
 .prose a[href^="/todo/"],
-.redlink,
-.stub {
+.redlink {
   color: rgb(var(--quality-reserved-a)) !important;
   cursor: not-allowed !important;
   text-decoration: none !important;
 }
 .stub {
-  color: rgb(97%,55%,29%) !important;
   cursor: pointer !important;
+  text-decoration: underline dotted !important;
+}
+.showing-drafts .stub {
+  color: rgb(97%,55%,29%) !important;
 }
 .prose a:hover {
   text-decoration: underline;
@@ -818,6 +841,7 @@ article {
   border-radius: .2rem;
   color: inherit !important;
   text-decoration: none !important;
+  text-align: left;
 }
 .hero img {
   position: absolute;
@@ -879,6 +903,23 @@ article {
   right: -1rem;
   height: 6.7rem;
   background: linear-gradient(rgba(var(--bg),0%), rgba(var(--bg),60%), rgba(var(--bg),80%));
+}
+
+.goals {
+  padding: 0 1rem;
+}
+.goals > h1 {
+  margin: 1rem auto;
+}
+.hero-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 19.5rem);
+/*  justify-content: center;*/
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+.hero-list .hero {
+  margin: 0;
 }
 
 .controls {
@@ -944,7 +985,7 @@ span.spoilers::before {
   justify-content: center;
 }
 span.reserved::before {
-  content: '(unused)';
+  content: '(reserved)';
 }
 .spoiled .spoilers,
 .spoiled.spoilers {
@@ -966,7 +1007,7 @@ span.reserved::before {
 }
 span.reserved::after {
   content: '';
-  content: '(unused)';
+  content: '(reserved)';
   vertical-align: super;
   font-size: .7em;
   pointer-events: none;
@@ -976,7 +1017,7 @@ div.reserved::after {
   position: absolute;
   top: .1rem;
   right: .5rem;
-  content: '(unused)';
+  content: '(reserved)';
   font-size: .7em;
   pointer-events: none;
 }
@@ -1072,10 +1113,14 @@ div.reserved::after {
 .task.no_label .mission {
   float: none;
 }
+.task .mission a {
+  text-decoration: none;
+}
 a.task {
   cursor: pointer;
 }
 a.task:hover .mission,
+.task .mission a:hover,
 a.task:hover .cutscene {
   text-decoration: underline;
 }
@@ -1142,7 +1187,8 @@ a.plot-cutscene:hover,
 }
 .plot-cutscene::before,
 .plot-cutscene-options a::before,
-.task .mission::before {
+a.task .mission::before,
+.task .mission a::before {
   margin-right: .25rem;
   /*content: 'Cutscene:';
   display: inline-block;
@@ -1155,11 +1201,16 @@ a.plot-cutscene:hover,
   margin-bottom: -.1em;*/
   background: url(/i/T_GUI_MapIcon_story_Cinematic.webp) center / 250%;
 }
-.task .mission::before {
+/*.task .mission a::before {
+  margin-left: .25rem;
+}*/
+a.task .mission::before,
+.task .mission a::before {
   background-image: var(--icon);
 }
 
 .objective,
+.objectives,
 .bonus-objective {
   font-size: inherit !important;
   text-shadow: none !important;
@@ -1167,14 +1218,25 @@ a.plot-cutscene:hover,
   font-style: italic;
   font-family: var(--pn);
   font-weight: 900;
-  margin: 0 0 0 -2.25rem !important;
+  margin: 0 0 0 -1.25rem !important;
+}
+.objectives {
+  font-size: inherit !important;
+  text-shadow: none !important;
+  text-transform: none !important;
+  font-style: normal;
+  font-family: var(--pnc) !important;
+  font-weight: 500 !important;
+}
+span.objective {
+  margin: 0 .25rem 0 0 !important;
 }
 .objective::before,
 .bonus-objective::before {
   font-family: CBRC Icons;
   content: 'J';
   color: rgb(var(--quality-legendary-a));
-  width: 2rem;
+  width: 1rem;
   display: inline-block;
   margin-right: .25rem;
   text-align: right;
@@ -1340,14 +1402,21 @@ span.error {
   display: inline;
   margin-left: .5em;
 }
+.ifig .caption {
+  /* text-decoration: rgb(var(--fg),50%) dotted underline; */
+  border-bottom: 1px dotted rgb(var(--fg),50%);
+}
 .ifig:first-child {
   margin-left: 0;
 }
-.fig:not(.active-fig):hover img,
-.ifig:not(.active-fig):hover img {
+.fig:not(.active-fig, :has(a:hover)):hover img,
+.ifig:not(.active-fig, :has(a:hover)):hover img {
   transform: scale(1.1);
   box-shadow: 0 0 0 1px rgb(var(--fg));
 }
+/*.ifig:not(.active-fig, :has(a:hover)) .caption:hover {
+  border-bottom-color: rgb(var(--fg));
+}*/
 /*.ifig:not(.active-fig):hover figcaption {
   text-decoration: underline;
 }*/
@@ -1492,6 +1561,7 @@ span.error {
   line-height: 1.2;
   text-decoration: none !important;
   margin: 1rem 0;
+  text-align: left;
 }
 a.achievement:hover > h1 {
   text-decoration: underline;
@@ -1513,11 +1583,16 @@ a.achievement:hover > h1 {
   color: rgba(var(--fg), 50%);
 }
 .achievement-list {
-  padding: 0 !important;
+  padding: 0 1rem !important;
+  margin: 1rem -1rem !important;
   list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 19.5rem);
+  justify-content: space-evenly;
+  gap: 1rem;
 }
 .achievement-list .achievement {
-  margin: .5rem 0;
+  margin: 0;
 }
 .achievement-hero {
 }
