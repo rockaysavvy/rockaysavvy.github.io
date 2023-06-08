@@ -1199,7 +1199,7 @@ a.task .mission::before,
   width: 1em;
   height: 1em;
   margin-bottom: -.1em;*/
-  background: url(/i/T_GUI_MapIcon_story_Cinematic.webp) center / 250%;
+  background: url(i/T_GUI_MapIcon_story_Cinematic.webp) center / 250%;
 }
 /*.task .mission a::before {
   margin-left: .25rem;
