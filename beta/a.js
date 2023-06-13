@@ -1,7 +1,7 @@
 const toNumberMaybe = x => +x === +x ? +x : x
 const toValue = el => toNumberMaybe(el.dataset.v || el.textContent)
 
-const sortBy = (th, descending) => {
+const sortBy = (th, descending, soft = false) => {
   if (!th) return
   const hrow = th.parentElement
   const i = Array.from(hrow.children).indexOf(th)
@@ -24,14 +24,16 @@ const sortBy = (th, descending) => {
     return sign * ((typeof a == 'number') - (typeof b === 'number') || (typeof a === 'number' ? a - b : a.localeCompare(b)))
   })
   tbody.append(...rows)
-  const params = new URLSearchParams(location.hash.slice(1))
-  params.set('sort', th.dataset.id)
-  if (sign === -1) {
-    params.set('descending', '')
-  } else {
-    params.delete('descending')
+  if (!soft) {
+    const params = new URLSearchParams(location.hash.slice(1))
+    params.set('sort', th.dataset.id)
+    if (sign === -1) {
+      params.set('descending', '')
+    } else {
+      params.delete('descending')
+    }
+    history.replaceState(null, '', '#' + params)
   }
-  history.replaceState(null, '', '#' + params)
 }
 const filterEls = key =>
   Array.from(document.querySelectorAll(`.filters a[data-${key}]`))
@@ -99,7 +101,7 @@ function noScroll(e) {
 function figures() {
   return Array.from(document.querySelectorAll('.fig:not(.active-fig), .ifig:not(.active-fig)'))
 }
-function showFig(openFig, animated = false) {
+function showFig(openFig, animated = false, soft = false) {
   const prev = document.querySelector('.active-fig')
   if (prev) {
     hideFig(prev)
@@ -108,9 +110,8 @@ function showFig(openFig, animated = false) {
   activeFig = openFig
   openFig.scrollIntoViewIfNeeded(true)
   const fig = openFig.cloneNode(true)
-  const cap = fig.querySelector('.caption')
-  const n = cap.firstChild
-  if (n.nodeType === 3) {
+  const n = fig.querySelector('.caption')?.firstChild
+  if (n?.nodeType === 3) {
     n.textContent = n.textContent.replace(/^\s*[a-z]/, l => l.toUpperCase())
   }
   const img = fig.querySelector('img')
@@ -138,13 +139,15 @@ function showFig(openFig, animated = false) {
   } else {
     img.src = img.dataset.src
   }
-  const params = new URLSearchParams(location.hash.slice(1))
-  params.set('fig', img.dataset.src)
-  history.replaceState(null, '', '#' + params)
-  document.body.append(fig)
-  document.addEventListener('wheel', noScroll, {passive: false})
+  if (!soft) {
+    const params = new URLSearchParams(location.hash.slice(1))
+    params.set('fig', img.dataset.src)
+    history.replaceState(null, '', '#' + params)
+    document.body.append(fig)
+    document.addEventListener('wheel', noScroll, {passive: false})
+  }
 }
-function hideFig(fig, animated = false) {
+function hideFig(fig, animated = false, soft = false) {
   const img = fig.querySelector('img:last-of-type')
   img.previousElementSibling?.remove()
 
@@ -163,10 +166,12 @@ function hideFig(fig, animated = false) {
     fig.remove()
   }
   activeFig = null
-  const params = new URLSearchParams(location.hash.slice(1))
-  params.delete('fig')
-  history.replaceState(null, '', '#' + params)
-  document.removeEventListener('wheel', noScroll, {passive: false})
+  if (!soft) {
+    const params = new URLSearchParams(location.hash.slice(1))
+    params.delete('fig')
+    history.replaceState(null, '', '#' + params)
+    document.removeEventListener('wheel', noScroll, {passive: false})
+  }
 }
 
 const searchEl = document.querySelector('.top .search')
@@ -270,7 +275,7 @@ function roundSf(n, figs) {
   const base = 10**(Math.floor(Math.log10(n)) - figs + 1)
   return Math.round(n/base)*base
 }
-function calculateReward() {
+function calculateReward(soft = false) {
   const resps = rewardRespect.value.split(' ')
   const diffs = rewardDifficulty.value.split(' ')
   const rmv = +rewardCalculator.dataset.rmv
@@ -331,34 +336,36 @@ function calculateReward() {
   rewardExpenses.textContent = exp.length <= THRESH ? expAll : expRange
   rewardExpenses.title = expAll
 
-  const params = new URLSearchParams(location.hash.slice(1))
-  if (resps.length > 1) {
-    params.delete('reward-respect')
-  } else {
-    params.set('reward-respect', rewardRespect.value)
+  if (!soft) {
+    const params = new URLSearchParams(location.hash.slice(1))
+    if (resps.length > 1) {
+      params.delete('reward-respect')
+    } else {
+      params.set('reward-respect', rewardRespect.value)
+    }
+    if (diffs.length > 1) {
+      params.delete('reward-difficulty')
+    } else {
+      params.set('reward-difficulty', rewardDifficulty.value)
+    }
+    if (+rewardBonus.value === 0) {
+      params.delete('reward-bonus')
+    } else {
+      params.set('reward-bonus', rewardBonus.value)
+    }
+    history.replaceState(null, '', '#' + params)
   }
-  if (diffs.length > 1) {
-    params.delete('reward-difficulty')
-  } else {
-    params.set('reward-difficulty', rewardDifficulty.value)
-  }
-  if (+rewardBonus.value === 0) {
-    params.delete('reward-bonus')
-  } else {
-    params.set('reward-bonus', rewardBonus.value)
-  }
-  history.replaceState(null, '', '#' + params)
 }
 
 const params = new URLSearchParams(location.hash.slice(1))
 if (params.get('sort')) {
-  sortBy(document.querySelector(`[data-id="${params.get('sort')}"]`), params.get('descending') != null)
+  sortBy(document.querySelector(`[data-id="${params.get('sort')}"]`), params.get('descending') != null, true)
 }
 if (params.get('fig')) {
   const img = document.querySelector(`img[data-src="${params.get('fig')}"]`)
   const fig = img && img.closest('.fig, .ifig')
   if (img) {
-    showFig(fig)
+    showFig(fig, false, true)
   }
 }
 if (params.get('reward-respect')) {
@@ -370,7 +377,7 @@ if (params.get('reward-difficulty')) {
 if (params.get('reward-bonus')) {
   rewardBonus.value = params.get('reward-bonus')
 }
-if (rewardCalculator) calculateReward()
+if (rewardCalculator) calculateReward(true)
 
 document.addEventListener('click', e => {
   const th = e.target.closest('th.sort')

@@ -48,9 +48,9 @@ all: $(OUTPUTS)
 clean:
 	rm -f $(wildcard i/*.woff2) $(wildcard i/*.webp) $(wildcard a/*.webp) $(wildcard a/backdrops/*.webp)
 
-beta:
+beta: all
 	jekyll build -b beta -d ~/Documents/build/rockaysavvy/beta
-main:
+main: all
 	jekyll build -d ~/Documents/build/rockaysavvy
 
 .PHONY: all beta main clean

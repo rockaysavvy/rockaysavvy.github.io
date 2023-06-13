@@ -1,0 +1,296 @@
+<!doctype html>
+<meta charset=utf-8>
+
+<title>Money Train — Rockay Savvy</title>
+<link rel=stylesheet href="/beta/a.css">
+<link rel=stylesheet href=https://use.typekit.net/qfe8qgh.css>
+<body>
+<img class=backdrop src="/beta/a/backdrops/mtr1.webp">
+<nav class=top>
+  <ul>
+  <li><a class="tab logo" href="/beta/" data-t="New">New</a>
+  <li><a class="tab active" href="/beta/goals/" data-t="Goals">Goals</a>
+  <li><a class="tab" href="/beta/people/" data-t="People">People</a>
+  <li><a class="tab" href="/beta/weapons/" data-t="Weapons">Weapons</a>
+  <li><a class="tab" href="/beta/strategy/" data-t="Strategy">Strategy</a>
+  <li><a class="tab" href="/beta/meta/" data-t="About">About</a>
+  <li class=search><input type=search placeholder="Search…">
+  </ul>
+</nav>
+<article class="prose">
+<h1>Money Train</h1>
+
+
+
+<figure class="hero">
+  <img src="/beta/i/m/T_GUI_Goal_mtr_MoneyTrain.webp">
+  <img class=icon src="/beta/i/T_GUI_MapIcon_story_MoneyTrain.webp">
+  <figcaption class=caption>
+    This is it – the Money Train. Let's get rich.
+  </figcaption>
+  </figure>
+
+<p class=task>
+  Main objective
+  <span class=mission>Rob the train and escape</span>
+</p>
+
+<p class=task>
+  Crew
+  <span class=mission>
+    1–4 heisters
+    </span>
+</p>
+
+<a class="task task-disclosing">
+  Special objectives
+  <span class="mission disclosure">
+    3 possibilities
+  </span>
+</a>
+<ul class="task-disclosed bonus-objective-list" hidden>
+  <li class=bonus-objective>Use at most 4 revives
+  <li class=bonus-objective>Collect 90% of all loot
+  <li class=bonus-objective>Finish with the boss on the team
+  </ul>
+<a class="task task-disclosing">
+  Expected value
+  <span class="mission disclosure" id=reward-calculator-summary>Calculate</span>
+</a>
+
+<section class="task-disclosed reward-calculator" hidden data-rmv=1 data-mmvm=35.0 data-subtype=BigHeist data-omv=35.0>
+  <label>
+    Respect
+    <select id=reward-calculator-respect>
+      <option value="Low Connected Respected Formidable CrimeBoss GodFather">Any
+      <option value=Low>Low respect
+      <option value=Connected>Connected
+      <option value=Respected>Respected
+      <option value=Formidable>Formidable
+      <option value=CrimeBoss>Crime boss
+      <option value=GodFather>Godfather
+    </select>
+  </label>
+  <label>
+    Generated difficulty
+    <select id=reward-calculator-difficulty>
+      <option value="SD_LightForce SD_MediumForce SD_HeavyForce">Any
+      <option value=SD_LightForce>Light
+      <option value=SD_MediumForce>Medium
+      <option value=SD_HeavyForce>Heavy
+    </select>
+  </label>
+  
+  <label>
+    Big-ass Bounty
+    <select id=reward-calculator-bonus>
+      <option value=0.0>None
+      <option value=0.04>Level 1: 4%
+      <option value=0.08>Level 2: 8%
+      <option value=0.12>Level 3: 12%
+      <option value=0.16>Level 4: 16%
+      <option value=0.2>Level 5: 20%
+      <option value=0.24>Level 6: 24%
+      <option value=0.28>Level 7: 28%
+      <option value=0.32>Level 8: 32%
+      <option value=0.36000000000000004>Level 9: 36%
+      <option value=0.4>Level 10: 40%
+      </select>
+  </label>
+  <p class=task>
+    Expected value
+    <span class=mission id=reward-calculator-objective></span>
+  </p>
+  <p class=task>
+    Maximum reward
+    <span class=mission id=reward-calculator-max></span>
+  </p>
+  <p class=task>
+    Mission planning cost
+    <span class=mission id=reward-calculator-expenses></span>
+  </p>
+</section>
+<p class=task>
+  Stealth
+  <span class=mission>
+    Unavailable
+  </span>
+</p>
+<p><dfn class="self">Money Train</dfn> is the final and principal <a href="/beta/missions/" class="stub">mission</a> in <a href="/beta/flows/MoneyTrain/">Train Robbery</a>. <a href="/beta/characters/Agent/" class="stub">Gloves</a>’s bomb derails the train, and <a href="/beta/characters/Baker/" class="stub">Baker</a>’s crew descends upon it, but <a href="/beta/people/Sheriff/" class="stub">Norris</a>’s men aren’t far behind.</p>
+
+<h2 id="ambush">Random events</h2>
+<p>If Baker’s crew <a href="/beta/missions/MTR_PlantBomb/">failed to plant the bomb</a> at the station and <a href="/beta/missions/MTR_PayBombPro/">paid</a> <a href="/beta/characters/Cracker/" class="stub">Cracker</a> to do so instead, Norris has a chance of ambushing Baker’s <a href="/beta/people/crew/" class="stub">crew</a> at the beginning of the mission. If Baker failed at least one attempt to <a href="/beta/missions/MTR_StealRing/">steal the ring</a> for Gloves’s police informant, <a href="/beta/characters/Hielo/" class="stub">Hielo</a> may rob the train if he hasn’t already departed <a href="/beta/culture/Rockay-City/" class="stub">Rockay City</a>.</p>
+
+<table class="prose-table">
+<thead><tr>
+    <th>Hielo</th>
+    <th><a href="/beta/missions/MTR_StealRing/">Train for a Ring (1)</a></th>
+    <th><a href="/beta/missions/MTR_StealRing/">Train for a Ring (2)</a></th>
+    <th>Station Boom</th>
+    <th>Norris ambush</th>
+    <th>Hielo robbery</th>
+</tr></thead>
+<tbody>
+<tr>
+    <td rowspan="2">Eliminated</td>
+    <td rowspan="2">Completed/Failed</td>
+    <td rowspan="2">Completed/Failed</td>
+    <td>Completed</td>
+    <td>0%</td>
+    <td>0%</td>
+</tr>
+<tr>
+    <td>Failed</td>
+    <td>100%</td>
+    <td>0%</td>
+</tr>
+<tr>
+    <td rowspan="6">Active</td>
+    <td rowspan="2">Completed</td>
+    <td rowspan="2">—</td>
+    <td>Completed</td>
+    <td>0%</td>
+    <td>0%</td>
+</tr>
+<tr>
+    <td>Failed</td>
+    <td>100%</td>
+    <td>0%</td>
+</tr>
+<tr>
+    <td rowspan="4">Failed</td>
+    <td rowspan="2">Completed</td>
+    <td>Completed</td>
+    <td>0%</td>
+    <td>35%</td>
+</tr>
+<tr>
+    <td>Failed</td>
+    <td>88%</td>
+    <td>12%</td>
+</tr>
+<tr>
+    <td rowspan="2">Failed</td>
+    <td>Completed</td>
+    <td>0%</td>
+    <td>70%</td>
+</tr>
+<tr>
+    <td>Failed</td>
+    <td>76%</td>
+    <td>24%</td>
+</tr>
+
+</tbody>
+</table>
+
+<p>The event is selected once, before the job is added to the map. The ambush and robbery are mutually exclusive, so players can <strong>decrease the chance of police ambush</strong> by failing Train for a Ring.</p>
+
+<h2 id="strategy">Strategy</h2>
+
+<p>The train keys either drop from one of the <a href="/beta/people/security-guards/" class="stub">security guards</a> around the station upon his death or appear in the control room on the upper level:</p>
+
+<ul class="fig-list">
+  <li>
+    <figure class="fig"><img src="/beta/a/t/mtr-accesscard-controlconsole.webp" data-src="/beta/a/mtr-accesscard-controlconsole.webp" /><figcaption class="caption">on the console;</figcaption></figure>
+  </li>
+  <li>
+    <figure class="fig"><img src="/beta/a/t/mtr-accesscard-controlpc.webp" data-src="/beta/a/mtr-accesscard-controlpc.webp" /><figcaption class="caption">next to the computer; or</figcaption></figure>
+  </li>
+  <li>
+    <figure class="fig"><img src="/beta/a/t/mtr-accesscard-controlfiling.webp" data-src="/beta/a/mtr-accesscard-controlfiling.webp" /><figcaption class="caption">on the filing cabinets.</figcaption></figure>
+  </li>
+</ul>
+
+<p>Players should either kill the <a href="/beta/people/security-guards/" class="stub">guards</a> <em>very</em> quickly after the mission starts or refrain from bringing AI teammates due to a <a href="#key-bug">bug that prevents the key from spawning</a>. If <a href="/beta/people/SWAT-officers/" class="stub">SWAT officers</a> ambush Baker’s crew, the train keys will always be in the control room.</p>
+
+<dl class="objective-annotation">
+  <dt>If the bomb overcranked:</dt>
+  <dd>
+    <h2 class="objective">Extinguish the Fire</h2>
+
+    <p>Heisters can find <a href="/beta/weapons/FireExtinguisher_Large/" class="stub">Fire Extinguishers</a> throughout the train station:</p>
+
+    <ul class="fig-list">
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-coffee.webp" data-src="/beta/a/mtr-extinguisher-coffee.webp" /><figcaption class="caption">On the wall near the Woodward Ave.–Handerson St. exit.</figcaption></figure>
+      </li>
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-endhanderson.webp" data-src="/beta/a/mtr-extinguisher-endhanderson.webp" /><figcaption class="caption">On the wall near the Handerson St.–side staircase.</figcaption></figure>
+      </li>
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-train.webp" data-src="/beta/a/mtr-extinguisher-train.webp" /><figcaption class="caption">On a pillar next to the train car.</figcaption></figure>
+      </li>
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-stairs.webp" data-src="/beta/a/mtr-extinguisher-stairs.webp" /><figcaption class="caption">On the wall by the central staircase.</figcaption></figure>
+      </li>
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-waiting.webp" data-src="/beta/a/mtr-extinguisher-waiting.webp" /><figcaption class="caption">On a pillar next to the waiting area near the Woodward Ave.–42 St. exit.</figcaption></figure>
+      </li>
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-end.webp" data-src="/beta/a/mtr-extinguisher-end.webp" /><figcaption class="caption">On a pillar near the 42 St.–side staircase.</figcaption></figure>
+      </li>
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-42.webp" data-src="/beta/a/mtr-extinguisher-42.webp" /><figcaption class="caption">On the wall in the corner by the Woodward Ave.–42 St. exit.</figcaption></figure>
+      </li>
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-up.webp" data-src="/beta/a/mtr-extinguisher-up.webp" /><figcaption class="caption">On the second floor, mounted to the wall outside the control room.</figcaption></figure>
+      </li>
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-control.webp" data-src="/beta/a/mtr-extinguisher-control.webp" /><figcaption class="caption">In the control room, leaning against the wall.</figcaption></figure>
+      </li>
+      <li>
+        <figure class="fig"><img src="/beta/a/t/mtr-extinguisher-controlout.webp" data-src="/beta/a/mtr-extinguisher-controlout.webp" /><figcaption class="caption">Outside the control room, mounted on the wall.</figcaption></figure>
+      </li>
+    </ul>
+
+    <p>Activating the sprinkler system by <span class="ifig"><img src="/beta/a/t/mtr-sprinklers.webp" data-src="/beta/a/mtr-sprinklers.webp" /><span class="caption">interacting with the computer in the control room</span></span> or waiting for it to automatically engage will extinguish the fires outside of the train, but heisters will still need portable extinguishers to douse any flames inside the car.</p>
+  </dd>
+</dl>
+
+<h2 class="objective">Break the train doors open</h2>
+<h2 class="objective">Get to the money</h2>
+<p>There are two inner cages in the train car; heisters can only saw one at a time. Obtaining the <strong>train keys</strong> is much faster and lets the crew instantly unlock both doors.</p>
+
+<h2 class="objective">Bag the money</h2>
+<p>Players can <a href="/beta/strategy/overstacking/">overstack</a> to minimize the number of bags. The hospital is quite far away and heisters run faster than law enforcement, so it’s better to <strong>make multiple trips</strong> than try to juggle more than two bags per heister across the roadblocks.</p>
+
+<p>If the crew wants to obtain all loot, there are also two <a href="/todo/#/pages/cash-registers/">cash registers</a> in the station, both near the Woodward Ave.–Handerson St. exit:</p>
+
+<ul class="fig-list">
+  <li>
+    <figure class="fig"><img src="/beta/a/t/mtr-register-coffee.webp" data-src="/beta/a/mtr-register-coffee.webp" /><figcaption class="caption">At the <a href="/beta/culture/Coffee-to-Go/">Coffee to go</a> opposite the stairs.</figcaption></figure>
+  </li>
+  <li>
+    <figure class="fig"><img src="/beta/a/t/mtr-register-cafe.webp" data-src="/beta/a/mtr-register-cafe.webp" /><figcaption class="caption">In the <a href="/beta/culture/Fancy-Crunch-Cafe/" class="stub">Fancy Crunch Cafe</a> adjacent to it in the central strip.</figcaption></figure>
+  </li>
+</ul>
+
+<h2 class="objective">Get out of the station</h2>
+<h2 class="objective">Fight your way to the container</h2>
+<p>A <a href="/beta/people/heavies/" class="stub">heavy</a> appears to the left of the hospital, but he walks quite slowly; players can ignore him if he stays afar. The safest route is along the right side of the roadblock; heisters can use the <span class="ifig"><img src="/beta/a/t/mtr-cover-benches.webp" data-src="/beta/a/mtr-cover-benches.webp" /><span class="caption">benches</span></span>, <span class="ifig"><img src="/beta/a/t/mtr-cover-cruiser.webp" data-src="/beta/a/mtr-cover-cruiser.webp" /><span class="caption">parked cruisers</span></span>, and <span class="ifig"><img src="/beta/a/t/mtr-cover-dumpsters.webp" data-src="/beta/a/mtr-cover-dumpsters.webp" /><span class="caption">dumpsters</span></span> as cover.</p>
+<h2 class="objective">Set off the smoke screen</h2>
+<h2 class="objective">Throw the bags into the container</h2>
+<h2 class="objective">Time to escape</h2>
+<p>Players should ensure <strong>all crew members are safe</strong> and the immediate area is free of enemies before <span class="input" title="Use (F)" data-b="F"></span> radioing the pilot, due to a <a href="#escape-bug">bug in the escape sequence</a>.</p>
+
+<h2 id="consequences">Consequences</h2>
+<div class="spoilers">
+  <p>Completing, failing, or ignoring this mission ends the Train Robbery <a href="/beta/goals/plotlines/">plot line</a>. If Baker fails or ignores the mission and Hielo robs the train, he obtains $650,000 for the <a href="/beta/people/Chicos/" class="stub">Chicos</a>.</p>
+</div>
+
+<h2 id="known-issues">Known issues</h2>
+
+<ul id="key-bug">
+  <li>If an AI crew member kills the guard carrying the key, it will not drop.</li>
+</ul>
+<ul id="escape-bug">
+  <li>Crew members can <strong>die during the escape cutscene</strong>, including Baker, which will end the playthrough.</li>
+</ul>
+
+
+</article>
+
+<script src=/beta/d.js></script>
+<script src=/beta/a.js></script>
+
