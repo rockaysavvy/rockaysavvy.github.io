@@ -1433,10 +1433,12 @@ span.error {
   position: relative;
   height: 1.5em;
   box-shadow: 0 0 0 1px rgba(var(--fg),50%);
+  aspect-ratio: 16/9;
+  object-fit: cover;
 }
 .ifig img {
   vertical-align: middle;
-  margin-right: .5em;
+  margin-right: .25em;
 }
 .fig .caption,
 .ifig .caption {
@@ -1506,6 +1508,7 @@ span.error {
   margin: 0 !important;
   object-fit: contain;
   box-shadow: none;
+  aspect-ratio: initial;
 }
 .active-fig .caption {
   position: absolute;

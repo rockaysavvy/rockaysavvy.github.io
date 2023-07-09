@@ -466,7 +466,7 @@ document.addEventListener('keydown', e => {
     case 'b': {
       if (!e.metaKey || !e.shiftKey || !e.ctrlKey) return
       const backdrop = document.querySelector('.backdrop')
-      backdrop.setAttribute('src', backdrop.getAttribute('src').replace(/\d+/, n => +n + 1))
+      backdrop.setAttribute('src', backdrop.getAttribute('src').replace(/(\d+|[a-z])(?=\.)/, n => +n === +n ? +n + 1 : String.fromCharCode(n.charCodeAt(0) + 1)))
       break
     }
     default: return
