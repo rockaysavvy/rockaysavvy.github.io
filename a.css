@@ -146,23 +146,6 @@ body {
   overflow-x: auto;
 }
 
-.resist {
-  position: fixed;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.resist img {
-  height: auto;
-  width: auto;
-  max-width: 100%;
-  pointer-events: none;
-}
-
 .top,
 .view {
   max-width: 100vw;
@@ -1129,7 +1112,7 @@ article {
   grid-column: 1 / -1;
 /*  grid-template-columns: min-content auto;*/
 /*  grid-template-columns: repeat(auto-fill, 10rem 19rem);*/
-  grid-template-columns: repeat(auto-fill, 17rem);
+  grid-template-columns: repeat(auto-fill, 29rem);
   gap: 1rem 2rem;
   align-items: center;
   justify-content: center;
@@ -1146,10 +1129,11 @@ article {
 .char-info {
 /*  display: contents;*/
   display: grid;
-  grid-template-columns: 10rem 6rem;
+  grid-template-columns: 10rem 19rem;
   gap: 1rem 0;
 }
 .char-info {
+  grid-template-columns: 10rem 6rem;
   justify-content: center;
 }
 .char-stats {
@@ -1750,22 +1734,22 @@ article {
   background: linear-gradient(rgba(var(--bg),0%), rgba(var(--bg),60%), rgba(var(--bg),80%));
 }
 
-:is(.job-context, .hero-context) {
+.job-context {
   display: grid;
   grid-template-columns: subgrid;
   grid-column: left / right;
   gap: 1rem 0;
   margin-bottom: 1rem;
 }
-:is(.job-context, .hero-context) > .hero {
+.job-context > .hero {
   grid-area: 1 / content;
-  margin: 0;
 }
 .job-details {
   grid-area: 2 / content;
 }
 
-.job-context-prev, .job-context-next, .hero-context-prev, .hero-context-next {
+.job-context-prev,
+.job-context-next {
   display: grid;
   width: 10rem;
   max-width: 15vw;
@@ -1774,7 +1758,8 @@ article {
   --w: 1.5rem;
   --h: 4rem;
 }
-:is(.job-context-prev, .job-context-next, .hero-context-prev, .hero-context-next):not(:empty)::after {
+.job-context-prev:not(:empty)::after,
+.job-context-next:not(:empty)::after {
   content: '';
   grid-area: 1 / 1;
   pointer-events: none;
@@ -1788,19 +1773,20 @@ article {
   z-index: 1;
   opacity: .5;
 }
-:is(.job-context-next, .hero-context-next):not(:empty)::after {
+.job-context-next:not(:empty)::after {
   border-left: var(--w) solid rgb(var(--fg));
   border-right: 0;
 }
-:is(.job-context-prev, .hero-context-prev) {
+.job-context-prev {
   grid-area: 1 / left;
   margin-right: 1rem;
 }
-:is(.job-context-next, .hero-context-next) {
+.job-context-next {
   grid-area: 1 / right;
   margin-left: 1rem;
 }
-:is(.job-context-prev, .job-context-next, .hero-context-next, .hero-context-prev) .hero {
+.job-context-prev .hero,
+.job-context-next .hero {
   grid-area: 1 / 1;
 /*  aspect-ratio: .5;*/
   aspect-ratio: auto;
@@ -1810,12 +1796,6 @@ article {
 }
 
 @media (max-width: 66rem) {
-  .hero-context {
-    grid-column: content;
-    grid-template-columns: [content-start] 1fr 1fr [content-end];
-    grid-template-areas: "left right";
-    gap: 1rem;
-  }
   .job-context {
     grid-column: content;
     grid-template-columns: 1fr 5fr 1fr;
@@ -1826,29 +1806,27 @@ article {
     width: calc(50% - .5rem);
     max-width: none;*/
   }
-  :is(.job-context, .hero-context) > .hero {
+  .job-context > .hero {
     grid-area: 1 / 1 / 1 / -1;
   }
-  .job-context-prev, .job-context-next, .hero-context-prev, .hero-context-next {
+  .job-context-prev,
+  .job-context-next {
     width: auto;
-    max-width: none;
+    max-width: auto;
     margin: 0;
     --w: 1.25rem;
     --h: 2rem;
   }
-  :is(.hero-context-prev, .hero-context-next) .hero {
-    padding: 2rem 0;
-  }
-  .job-context-prev, .hero-context-prev {
+  .job-context-prev {
     grid-area: 2 / left;
   }
-  .job-context-next, .hero-context-next {
+  .job-context-next {
     grid-area: 2 / right;
   }
-  :is(.job-context-prev, .job-context-next, .hero-context-prev, .hero-context-next) .hero {
+  :is(.job-context-prev, .job-context-next) .hero {
     opacity: 1;
   }
-  :is(.job-context-prev, .job-context-next, .hero-context-prev, .hero-context-next) .caption {
+  :is(.job-context-prev, .job-context-next) .caption {
     display: none;
   }
   .job-context-prev:empty ~ .job-details {
