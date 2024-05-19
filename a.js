@@ -363,6 +363,7 @@ searchField.parentElement.append(searchResultsEl)
 window.SEARCH ??= []
 for (const s of SEARCH) {
   s.n = normalizeSearch(s.t)
+  ;[s.ub, s.uf] = s.u.split('#')
   const i = s.t.indexOf(' (')
   s.m = i === -1 ? s.n.length : i
 }
@@ -401,8 +402,8 @@ function doSearch() {
   const top = []
   const seen = new Set
   for (const r of results) {
-    if (!seen.has(r.u)) {
-      seen.add(r.u)
+    if (!seen.has(r.ub)) {
+      seen.add(r.ub)
       top.push(r)
       if (top.length >= 10) break
     }
@@ -415,8 +416,7 @@ function doSearch() {
   let i = 0
   for (; i < top.length; ++i) {
     const r = top[i]
-    const [baseU, frag] = r.u.split('#')
-    const s = SEARCH.find(s => s.u == r.u && s.d) || SEARCH.find(s => s.u == baseU && s.d)
+    const s = SEARCH.find(s => s.u == r.u && s.d) || SEARCH.find(s => s.u == r.ub && s.d)
     const el = searchResults[i] ??= makeSearchResult()
     el.firstElementChild.href = r.u
     const sExact = s?.u === r.u
