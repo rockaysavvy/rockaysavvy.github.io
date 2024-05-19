@@ -160,6 +160,7 @@ body {
   height: auto;
   width: auto;
   max-width: 100%;
+  pointer-events: none;
 }
 
 .top,
