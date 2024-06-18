@@ -4,7 +4,7 @@ const toNumberMaybe = x => +x === +x ? +x : x
 const toValue = el => toNumberMaybe(el.dataset.v || el.textContent)
 const lerp = (a, b, t) => (1 - t) * a + t * b
 
-const colsDescend = Array.from(document.querySelector('.weapon-table tr.secondary')?.children || [], th => th.classList.contains('descending'))
+const colsDescend = Array.from(document.querySelector('.filtered-table tr.secondary')?.children || [], th => th.classList.contains('descending'))
 const stateLinks = Array.from(document.querySelectorAll('#wdef-grid, #wdef-list, #wdef-table'))
 for (const el of stateLinks) {
   el.setAttribute('href', el.getAttribute('href').split('#')[0] + location.hash)
@@ -83,100 +83,112 @@ const setFilterState = (key, values) => {
   }
 }
 
+const FILTERED = {
+  wdefs() {
+    const qualities = filterState('quality')
+    const classes = filterState('class')
+    const allClasses = classes.length === 0
+    const firemodes = filterState('firemodes').join(',').split(',')
+    const types = filterState('type')
+    const suppresseds = filterState('suppressed')
+    const uniques = filterState('unique')
+    const allFiremodes = firemodes.length === 4
+    const rangeLabel = document.querySelector('.filters .range')
+    const activeEl = rangeLabel?.querySelector('.active')
+    const targetRange = +targetRangeEl?.value || 0
+    if (rangeLabel) {
+      rangeLabel.querySelector('.text').textContent = `${Math.round(targetRange/100)} m`
+      activeEl.style.width = `${(targetRange - targetRangeEl.min) / (targetRangeEl.max - targetRangeEl.min) * 100}%`
+    }
+    return el => {
+      if (rangeLabel) {
+        const damageMelee = +el.dataset.damagemelee
+        const damageMeleeAi = +el.dataset.damagemeleeai
+        const damagePerShot = +el.dataset.damage
+        const damagePerShotAiEnemy = +el.dataset.damageenemy
+        const damagePerShotAiHeister = +el.dataset.damageheister
+        const mulDamageMin = +el.dataset.muldamagemin
+        const mulDamageMinAi = +el.dataset.muldamageminai
+        const range = +el.dataset.range
+        const rangeMax = +el.dataset.rangemax
+        const rangeMelee = +el.dataset.rangemelee
+        const rangeAi = +el.dataset.rangeai
+        const rangeMaxAi = +el.dataset.rangemaxai
+        const rangeMeleeAi = +el.dataset.rangemeleeai
+        const nominalMagazine = +el.dataset.magazine
+        const ammoCost = +el.dataset.ammocost
+        const magazine = Math.ceil(nominalMagazine / (ammoCost || 1))
+        const isMelee = el.dataset.class === 'C_Melee'
+        const rpsSust = isMelee ? +el.dataset.rpssustmelee : +el.dataset.rpssust
+        const rpsInst = isMelee ? +el.dataset.rpsinstmelee : +el.dataset.rpsinst
+        const rpsSustAi = isMelee ? +el.dataset.rpssustmelee/*ai*/ : +el.dataset.rpssustai
+        const rpsInstAi = isMelee ? +el.dataset.rpsinstmelee/*ai*/ : +el.dataset.rpsinstai
+
+        const trf = isMelee ? 1. : Math.max(0, Math.min(1, (targetRange - range) / (rangeMax - range || 0.001)))
+        const damage = isMelee ? damageMelee * (targetRange <= rangeMelee) : damagePerShot * lerp(1, mulDamageMin, trf)
+        const dim = damage * magazine
+        const trfAi = isMelee ? 1. : Math.max(0, Math.min(1, (targetRange - rangeAi) / (rangeMaxAi - rangeAi || 0.001)))
+        const damageAiEnemy = isMelee ? damageMeleeAi * (targetRange <= rangeMelee) : damagePerShotAiEnemy * lerp(1, mulDamageMinAi, trf)
+        const damageAiHeister = isMelee ? damageMeleeAi * (targetRange <= rangeMelee) : damagePerShotAiHeister * lerp(1, mulDamageMinAi, trf)
+
+        const dpsInst = rpsInst * damage
+        const dps = rpsSust * damage
+        const dpsAiEnemy = rpsSustAi * damageAiEnemy
+        const dpsAiHeister = rpsSustAi * damageAiHeister
+        const dpsInstAiEnemy = rpsInstAi * damageAiEnemy
+        const dpsInstAiHeister = rpsInstAi * damageAiHeister
+
+        const damageEl = el.querySelector('.damage')
+        if (damageEl) {
+          damageEl.dataset.v = damage
+          damageEl.textContent = damage.toFixed(0)
+        }
+        const damageAiEnemyEl = el.querySelector('.damage-enemy')
+        if (damageAiEnemyEl) damageAiEnemyEl.textContent = damageAiEnemy.toFixed(0)
+        const damageAiHeisterEl = el.querySelector('.damage-heister')
+        if (damageAiHeisterEl) damageAiHeisterEl.textContent = damageAiHeister.toFixed(0)
+        const dpsAiHeisterEl = el.querySelector('.dps-heister')
+        if (dpsAiHeisterEl) dpsAiHeisterEl.textContent = dpsAiHeister.toFixed(0)
+        const dpsAiEnemyEl = el.querySelector('.dps-enemy')
+        if (dpsAiEnemyEl) dpsAiEnemyEl.textContent = dpsAiEnemy.toFixed(0)
+        const dpsInstAiHeisterEl = el.querySelector('.dps-inst-heister')
+        if (dpsInstAiHeisterEl) dpsInstAiHeisterEl.textContent = dpsInstAiHeister.toFixed(0)
+        const dpsAiInstEnemyEl = el.querySelector('.dps-inst-enemy')
+        if (dpsAiInstEnemyEl) dpsAiInstEnemyEl.textContent = dpsInstAiEnemy.toFixed(0)
+        const dimEl = el.querySelector('.dim')
+        if (dimEl) {
+          dimEl.dataset.v = isMelee || ammoCost === 0 ? 0 : dim
+          dimEl.textContent = isMelee || ammoCost === 0 ? '' : dim.toFixed(0)
+        }
+        const dpsInstEl = el.querySelector('.dps-inst')
+        if (dpsInstEl) dpsInstEl.textContent = dpsInst.toFixed(0)
+        const dpsEl = el.querySelector('.dps')
+        if (dpsEl) dpsEl.textContent = dps.toFixed(0)
+      }
+      return qualities.includes(el.dataset.quality) && types.includes(el.dataset.type) && suppresseds.includes(el.dataset.suppressed) && uniques.includes(el.dataset.unique) && (allFiremodes || firemodes.some(f => el.dataset.firemodes.includes(f))) && classes.includes(el.dataset.class)
+    }
+  },
+  chars() {
+    const qualities = filterState('quality')
+    const levels = filterState('level')
+    return el => qualities.includes(el.dataset.quality) && levels.includes(el.dataset.level)
+  },
+}
+
 const targetRangeEl = document.querySelector('.filters .range input')
 const refilter = () => {
   const filtered = document.querySelector('.filtered')
   if (!filtered) return
 
   const isTable = filtered.localName === 'tbody'
-  const qualities = filterState('quality')
-  const classes = filterState('class')
-  const allClasses = classes.length === 0
-  const firemodes = filterState('firemodes').join(',').split(',')
-  const types = filterState('type')
-  const suppresseds = filterState('suppressed')
-  const uniques = filterState('unique')
-  const allFiremodes = firemodes.length === 4
-  const rangeLabel = document.querySelector('.filters .range')
-  const activeEl = rangeLabel?.querySelector('.active')
-  const targetRange = +targetRangeEl?.value || 0
-  if (rangeLabel) {
-    rangeLabel.querySelector('.text').textContent = `${Math.round(targetRange/100)} m`
-    activeEl.style.width = `${(targetRange - targetRangeEl.min) / (targetRangeEl.max - targetRangeEl.min) * 100}%`
-  }
-
+  const filter = FILTERED[filtered.dataset.kind]()
   const minmax = Array.from(colsDescend, desc => {
     return {minOut: NaN, min: NaN, avg: 0, max: NaN, maxOut: NaN, desc}
   })
   let count = 0
   for (const el of filtered.children) {
-    const show = qualities.includes(el.dataset.quality) && types.includes(el.dataset.type) && suppresseds.includes(el.dataset.suppressed) && uniques.includes(el.dataset.unique) && (allFiremodes || firemodes.some(f => el.dataset.firemodes.includes(f))) && classes.includes(el.dataset.class)
+    const show = filter(el)
     el.style.display = show ? '' : 'none'
-
-    if (rangeLabel) {
-      const damageMelee = +el.dataset.damagemelee
-      const damageMeleeAi = +el.dataset.damagemeleeai
-      const damagePerShot = +el.dataset.damage
-      const damagePerShotAiEnemy = +el.dataset.damageenemy
-      const damagePerShotAiHeister = +el.dataset.damageheister
-      const mulDamageMin = +el.dataset.muldamagemin
-      const mulDamageMinAi = +el.dataset.muldamageminai
-      const range = +el.dataset.range
-      const rangeMax = +el.dataset.rangemax
-      const rangeMelee = +el.dataset.rangemelee
-      const rangeAi = +el.dataset.rangeai
-      const rangeMaxAi = +el.dataset.rangemaxai
-      const rangeMeleeAi = +el.dataset.rangemeleeai
-      const nominalMagazine = +el.dataset.magazine
-      const ammoCost = +el.dataset.ammocost
-      const magazine = Math.ceil(nominalMagazine / (ammoCost || 1))
-      const isMelee = el.dataset.class === 'C_Melee'
-      const rpsSust = isMelee ? +el.dataset.rpssustmelee : +el.dataset.rpssust
-      const rpsInst = isMelee ? +el.dataset.rpsinstmelee : +el.dataset.rpsinst
-      const rpsSustAi = isMelee ? +el.dataset.rpssustmelee/*ai*/ : +el.dataset.rpssustai
-      const rpsInstAi = isMelee ? +el.dataset.rpsinstmelee/*ai*/ : +el.dataset.rpsinstai
-
-      const trf = isMelee ? 1. : Math.max(0, Math.min(1, (targetRange - range) / (rangeMax - range || 0.001)))
-      const damage = isMelee ? damageMelee * (targetRange <= rangeMelee) : damagePerShot * lerp(1, mulDamageMin, trf)
-      const dim = damage * magazine
-      const trfAi = isMelee ? 1. : Math.max(0, Math.min(1, (targetRange - rangeAi) / (rangeMaxAi - rangeAi || 0.001)))
-      const damageAiEnemy = isMelee ? damageMeleeAi * (targetRange <= rangeMelee) : damagePerShotAiEnemy * lerp(1, mulDamageMinAi, trf)
-      const damageAiHeister = isMelee ? damageMeleeAi * (targetRange <= rangeMelee) : damagePerShotAiHeister * lerp(1, mulDamageMinAi, trf)
-
-      const dpsInst = rpsInst * damage
-      const dps = rpsSust * damage
-      const dpsAiEnemy = rpsSustAi * damageAiEnemy
-      const dpsAiHeister = rpsSustAi * damageAiHeister
-      const dpsInstAiEnemy = rpsInstAi * damageAiEnemy
-      const dpsInstAiHeister = rpsInstAi * damageAiHeister
-
-      const damageEl = el.querySelector('.damage')
-      if (damageEl) {
-        damageEl.dataset.v = damage
-        damageEl.textContent = damage.toFixed(0)
-      }
-      const damageAiEnemyEl = el.querySelector('.damage-enemy')
-      if (damageAiEnemyEl) damageAiEnemyEl.textContent = damageAiEnemy.toFixed(0)
-      const damageAiHeisterEl = el.querySelector('.damage-heister')
-      if (damageAiHeisterEl) damageAiHeisterEl.textContent = damageAiHeister.toFixed(0)
-      const dpsAiHeisterEl = el.querySelector('.dps-heister')
-      if (dpsAiHeisterEl) dpsAiHeisterEl.textContent = dpsAiHeister.toFixed(0)
-      const dpsAiEnemyEl = el.querySelector('.dps-enemy')
-      if (dpsAiEnemyEl) dpsAiEnemyEl.textContent = dpsAiEnemy.toFixed(0)
-      const dpsInstAiHeisterEl = el.querySelector('.dps-inst-heister')
-      if (dpsInstAiHeisterEl) dpsInstAiHeisterEl.textContent = dpsInstAiHeister.toFixed(0)
-      const dpsAiInstEnemyEl = el.querySelector('.dps-inst-enemy')
-      if (dpsAiInstEnemyEl) dpsAiInstEnemyEl.textContent = dpsInstAiEnemy.toFixed(0)
-      const dimEl = el.querySelector('.dim')
-      if (dimEl) {
-        dimEl.dataset.v = isMelee || ammoCost === 0 ? 0 : dim
-        dimEl.textContent = isMelee || ammoCost === 0 ? '' : dim.toFixed(0)
-      }
-      const dpsInstEl = el.querySelector('.dps-inst')
-      if (dpsInstEl) dpsInstEl.textContent = dpsInst.toFixed(0)
-      const dpsEl = el.querySelector('.dps')
-      if (dpsEl) dpsEl.textContent = dps.toFixed(0)
-    }
     if (show && isTable) {
       ++count
       let j = 0
@@ -206,12 +218,17 @@ const refilter = () => {
   if (!isTable) return
   for (const mm of minmax) {
     mm.avg /= count
+    if (mm.min !== mm.min) mm.min = mm.minOut
   }
   for (const el of filtered.children) {
     if (el.style.display !== 'none') {
       let j = 0
       for (const td of el.children) {
         const mm = minmax[j++]
+        if (mm.minOut === mm.maxOut) {
+          td.style.color = ''
+          continue
+        }
         const v = toValue(td)
         // const f_ = (v - mm.min) * 2 / (mm.max - mm.min) - 1
         const f_ = v < mm.avg ? (v - mm.avg) / (mm.avg - mm.min) : (v - mm.avg) / (mm.max - mm.avg)
