@@ -150,7 +150,8 @@ body {
 }
 
 .top,
-.view {
+.view,
+.params {
   max-width: 100vw;
   position: sticky;
   left: 0;
@@ -412,7 +413,8 @@ body {
 .view .space {
   flex: 1;
 }
-.view h1 {
+.view h1,
+.params h1 {
   text-transform: uppercase;
   font-family: var(--pn);
   font-weight: 900;
@@ -436,7 +438,7 @@ body {
 .view + .polaroid-list {
   margin: 2rem 1rem 0;
 }
-.view select.filters {
+:is(.view, .params) select {
   color: inherit;
   background: 0;
   border: 0;
@@ -447,7 +449,7 @@ body {
 /*  height: 1.5em;*/
 }
 /* still ugly on firefox... */
-.view select.filters > option {
+:is(.view, .params) select > option {
   background: rgb(var(--bg));
   border: 0;
 }
@@ -538,6 +540,39 @@ body {
 .view a.active,
 .view a:hover {
   opacity: 1;
+}
+.params {
+  column-width: 20rem;
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  
+}
+.params h1 {
+/*  text-align: left;*/
+  font-size: 1rem;
+  padding: 0;
+}
+.params h1 a {
+  text-decoration: none;
+}
+.params section {
+  break-inside: avoid;
+  margin-bottom: .5rem;
+}
+.params label {
+  display: grid;
+  grid-template-columns: 10fr 10fr;
+  gap: 1rem;
+}
+.params label span {
+  text-align: right;
+}
+.params label :is(input, select) {
+  justify-self: start;
+}
+.params select {
+  text-align: left;
 }
 
 .goal-progress { --chromab-secondary: var(--goal-progress-secondary); --chromab-primary: var(--goal-progress-primary); }
@@ -970,10 +1005,14 @@ article {
 .filtered-table .secondary th {
   font-weight: inherit;
 }
-.filtered-table td:is(.name, .image),
-.filtered-table th:is(.name, .image) {
+.filtered-table td:is(.name, .image, .text),
+.filtered-table th:is(.name, .image, .text) {
   padding: .25rem;
   text-align: left !important;
+}
+.filtered-table .text-long {
+  width: 20rem;
+  white-space: normal;
 }
 .filtered-table .secondary th {
   padding: .25rem 0;
@@ -1027,7 +1066,7 @@ article {
 .filtered-table img.rotate {
   transform: rotate(90deg);
 }
-.filtered-table a {
+.filtered-table tbody a {
   text-align: left;
   display: block;
   text-decoration: none;
